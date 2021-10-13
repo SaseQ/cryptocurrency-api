@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface CryptoService {
 
-    List<Crypto> getCrypto();
+    List<Crypto> getCryptoList(int count);
 }
