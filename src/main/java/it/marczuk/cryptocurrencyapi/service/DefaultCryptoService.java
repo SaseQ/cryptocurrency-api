@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,6 +21,14 @@ public class DefaultCryptoService implements CryptoService {
 
     @Override
     public List<Crypto> getCryptoList(int count) {
-       return cryptoRepository.findAll().stream().filter(e -> e.getMarketCapRank()<=count).collect(Collectors.toList());
+        if(count<=50) {
+            return cryptoRepository.findAll().stream().filter(e -> e.getMarketCapRank()<=count).collect(Collectors.toList());
+        }
+       throw new RuntimeException("count must be less than 50!");
+    }
+
+    @Override
+    public Optional<Crypto> getCryptoBySymbol(String symbol) {
+        return cryptoRepository.findCryptoBySymbol(symbol);
     }
 }

@@ -1,13 +1,15 @@
 package it.marczuk.cryptocurrencyapi.respository;
 
-import it.marczuk.cryptocurrencyapi.model.Crypto;
+import it.marczuk.cryptocurrencyapi.model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface CryptoRepository extends MongoRepository<Crypto, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 
-    Optional<Crypto> findCryptoBySymbol(String symbol);
+    Optional<User> findUserByMail(String mail);
+
+    void deleteUserByMail(String mail);
 }
