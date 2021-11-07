@@ -1,5 +1,6 @@
 package it.marczuk.cryptocurrencyapi.service;
 
+import it.marczuk.cryptocurrencyapi.exceptions.GetCryptoException;
 import it.marczuk.cryptocurrencyapi.model.Crypto;
 import it.marczuk.cryptocurrencyapi.respository.CryptoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class DefaultCryptoService implements CryptoService {
         if(count<=50) {
             return cryptoRepository.findAll().stream().filter(e -> e.getMarketCapRank()<=count).collect(Collectors.toList());
         }
-       throw new RuntimeException("count must be less than 50!");
+       throw new GetCryptoException("count must be less than 50!");
     }
 
     @Override

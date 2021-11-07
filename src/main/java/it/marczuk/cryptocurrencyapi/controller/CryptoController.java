@@ -25,4 +25,9 @@ public class CryptoController {
     public List<Crypto> getCryptoList(@RequestParam String count) {
         return cryptoService.getCryptoList(Integer.parseInt(count));
     }
+
+    @GetMapping()
+    public Crypto getCrypto(@RequestParam String name) {
+        return cryptoService.getCryptoBySymbol(name).orElseThrow();
+    }
 }
